@@ -6,4 +6,12 @@
     "tags": ["meta"],
     "summary": "A short intro post demonstrating markdown + LaTeX rendering."
   }
+  
+  {
+    "slug": "Stellar Structure Equations",
+    "title": "Stellar Structure Equations of a Compact Star",
+    "date": "2026-08-30",
+    "tags": ["meta"],
+    "summary": "A short intro post looking at the basic derivation of the TOV equations."
+  }
 ]
