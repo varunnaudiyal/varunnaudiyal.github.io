@@ -43,6 +43,54 @@
   const slug = params.get('slug');
   const contentDiv = document.getElementById('content');
 
+  // Pulls $$...$$, \[...\], \(...\), and $...$ out of the markdown BEFORE
+  // marked.js parses it, so blank lines / underscores / asterisks inside
+  // math can never be misread as markdown syntax (paragraph breaks,
+  // emphasis, etc). The placeholders are swapped back in after parsing,
+  // untouched, and then KaTeX renders them.
+  function renderMarkdownWithMath(mdText, container) {
+    const mathBlocks = [];
+
+    const protectedText = mdText
+      // $$...$$ (display math, can span multiple lines/paragraphs)
+      .replace(/\$\$[\s\S]+?\$\$/g, (match) => {
+        mathBlocks.push(match);
+        return `%%MATHBLOCK${mathBlocks.length - 1}%%`;
+      })
+      // \[...\] (display math)
+      .replace(/\\\[[\s\S]+?\\\]/g, (match) => {
+        mathBlocks.push(match);
+        return `%%MATHBLOCK${mathBlocks.length - 1}%%`;
+      })
+      // \(...\) (inline math)
+      .replace(/\\\([\s\S]+?\\\)/g, (match) => {
+        mathBlocks.push(match);
+        return `%%MATHBLOCK${mathBlocks.length - 1}%%`;
+      })
+      // $...$ (inline math, single line only, not $$)
+      .replace(/(?<!\$)\$(?!\$)[^\n$]+?\$(?!\$)/g, (match) => {
+        mathBlocks.push(match);
+        return `%%MATHBLOCK${mathBlocks.length - 1}%%`;
+      });
+
+    let html = marked.parse(protectedText);
+
+    // Restore math verbatim, after markdown has already run
+    html = html.replace(/%%MATHBLOCK(\d+)%%/g, (_, i) => mathBlocks[Number(i)]);
+
+    container.innerHTML = html;
+
+    renderMathInElement(container, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });
+  }
+
   if (!slug) {
     contentDiv.innerHTML = '<p>No post specified.</p>';
   } else {
@@ -65,15 +113,7 @@
         return r.text();
       })
       .then(md => {
-        contentDiv.innerHTML = marked.parse(md);
-        renderMathInElement(contentDiv, {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '$', right: '$', display: false },
-            { left: '\\(', right: '\\)', display: false },
-            { left: '\\[', right: '\\]', display: true }
-          ]
-        });
+        renderMarkdownWithMath(md, contentDiv);
       })
       .catch(err => {
         contentDiv.innerHTML = `<p>Could not load post: ${err.message}</p>`;
