@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varun Naudiyal — Researcher</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">Varun Naudiyal</a>
+  <div class="links">
+    <a href="index.html" class="active">About</a>
+    <a href="cv.html">CV</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog.html">Blog</a>
+  </div>
+</nav>
+
+<main>
+  <h1>Varun Naudiyal</h1>
+  <p class="tagline">5th Year BS-MS student in Physics, IISER-Bhopal</p>
+
+  <p>
+    Hi! I am an aspiring astrophysicist, currently in my final year at IISER Bhopal. 
+    
+    My current work focuses on using <b>multi-messenger observations of electromagnetic transients and gravitational waves to constrain the still-unknown nuclear equation of states that governs the interior physics of neutron stars</b>. I approach this problem from several directions, ranging from constructing sequences of quasi-equilibrium configurations to using physics-informed machine learning techniques. 
+  </p>
+  
+  <p>
+    Aside from this, I am also interested in <b>numerical relativity simulations of binary neutron star (BNS) mergers and tidal disruption events</b>, essentially relativistic hydrodynamics and all that comes with it: jets, disks etc etc. 
+  </p>
+  
+  <p>
+  I’d also love to explore <b>accretion physics, BNS progenitors and the common-envelope phase</b>, as well as the early stages of stellar formation, particularly <b>protostars and protostellar disks</b>. More broadly, I’m interested in computational approaches to astrophysics and in understanding how we can connect theoretical models and simulations with observations.
+  </p>
+  
+  <p>
+    Outside research I like reading fiction, with a particular love for fantasy. The "Wheel of Time" and "A Song Of Ice and Fire" (aka Game of thrones) series are my favourites. I also like to draw, though I haven't done much of it recently. I also play the keyboard at times :). 
+  </p>
+  
+  <p>
+  You can reach me at <a href="mailto:varunn2@iiserb.ac.in">varunn22@iiserb.ac.in</a>.
+  </p>
+
+  <h2>Research Interests</h2>
+  <div class="pill-row">
+    <span class="pill">Neutron Stars</span>
+    <span class="pill">Binary Stars</span>
+    <span class="pill">Accretion Physics</span>
+    <span class="pill">Tidal Disruption</span>
+    <span class="pill">Gravitational Waves</span>
+    <span class="pill">Numerical Simulations</span>
+  </div>
+
+  <p>
+  </p>
+
+  <h2>Recent Posts</h2>
+  <div class="card-list" id="recent-posts">
+    <!-- filled by JS from posts-index.json -->
+  </div>
+</main>
+
+<footer>
+  © <span id="year"></span> Varun Naudiyal. Built with plain HTML/CSS/JS, hosted on GitHub Pages.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  fetch('posts-index.json')
+    .then(r => r.json())
+    .then(posts => {
+      const sorted = posts.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
+      const container = document.getElementById('recent-posts');
+      if (sorted.length === 0) {
+        container.innerHTML = '<p style="color:var(--muted)">No posts yet.</p>';
+        return;
+      }
+      container.innerHTML = sorted.map(p => `
+        <div class="card">
+          <div class="meta">${p.date}</div>
+          <h3><a href="post.html?slug=${p.slug}">${p.title}</a></h3>
+          <p>${p.summary || ''}</p>
+        </div>
+      `).join('');
+    });
+</script>
+
+</body>
+</html>

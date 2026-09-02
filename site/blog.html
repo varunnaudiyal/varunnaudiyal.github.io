@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Your Name</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">Varun Naudiyal</a>
+  <div class="links">
+    <a href="index.html">About</a>
+    <a href="cv.html">CV</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog.html" class="active">Blog</a>
+  </div>
+</nav>
+
+<main>
+  <h1>Blog</h1>
+  <p class="subtitle">Notes on research, things I'm learning, and work in progress.</p>
+
+  <div class="card-list" id="post-list">
+    <!-- filled by JS -->
+  </div>
+</main>
+
+<footer>
+  © <span id="year"></span> Varun Naudiyal.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  fetch('posts-index.json')
+    .then(r => r.json())
+    .then(posts => {
+      const sorted = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      const container = document.getElementById('post-list');
+      if (sorted.length === 0) {
+        container.innerHTML = '<p style="color:var(--muted)">No posts yet. Add one to posts/ and list it in posts-index.json.</p>';
+        return;
+      }
+      container.innerHTML = sorted.map(p => `
+        <div class="card">
+          <div class="meta">${p.date}${p.tags ? ' · ' + p.tags.join(', ') : ''}</div>
+          <h3><a href="post.html?slug=${p.slug}">${p.title}</a></h3>
+          <p>${p.summary || ''}</p>
+        </div>
+      `).join('');
+    });
+</script>
+
+</body>
+</html>

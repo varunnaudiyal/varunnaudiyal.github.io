@@ -1,0 +1,9 @@
+[
+  {
+    "slug": "welcome-post",
+    "title": "Welcome to My Blog",
+    "date": "2026-08-30",
+    "tags": ["meta"],
+    "summary": "A short intro post demonstrating markdown + LaTeX rendering."
+  }
+]

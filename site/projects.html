@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Varun Naudiyal</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<nav>
+  <a href="index.html" class="brand">Varun Naudiyal</a>
+  <div class="links">
+    <a href="index.html">About</a>
+    <a href="cv.html">CV</a>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="blog.html">Blog</a>
+  </div>
+</nav>
+<main>
+  <h1>Projects</h1>
+  <p class="subtitle">Research projects in compact object astrophysics and gravitational physics.</p>
+  <div class="card-list">
+
+    <div class="card">
+      <div class="meta">Aug 2026 – Present · Ongoing</div>
+      <h3><a href="#" target="_blank">Nuclear Equation of State: RMF/QHD Implementation in Neutron Stars</a></h3>
+      <p>Studying Quantum Hadrodynamics and Relativistic Mean Field theory as a framework for dense nuclear
+      matter beyond saturation density. Implementing a beta-equilibrated nuclear matter EOS incorporating the
+      baryon octet coupled to σ, ω, and ρ mesons, with leptons enforcing charge neutrality, and extending the
+      framework toward hyperon-rich matter and a hadron-quark hybrid EOS.</p>
+      <div class="pill-row">
+        <span class="pill">Python</span>
+        <span class="pill">RMF / QHD</span>
+        <span class="pill">Nuclear Astrophysics</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="meta">Jun 2026 – Jul 2026 · Summer Project, Dr. Ritam Mallick, IISER-B</div>
+      <h3><a href="#" target="_blank">Rotational Energy Budget of Supramassive Neutron Star Merger Remnants</a></h3>
+      <p>Studied the physics of rotating neutron stars and turning point theorem, which identifies onset of secular instabilities. 
+      Used the RNS code to construct sequences of rotating supramassive neutron star configurations, spanning
+      the mass-shedding limit to the turning point of secular instability, and computed the extractable rotational
+      kinetic energy released during spin-down collapse. Compared this energy budget against the observed
+      kilonova energy of GW170817 and checked the consistency of realistic EOS models against this energy budget.</p>
+      <div class="pill-row">
+        <span class="pill">RNS</span>
+        <span class="pill">General Relativity</span>
+        <span class="pill">Gravitational Waves</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="meta">Jun 2025 – Jul 2025 · Summer Project, Mr. Asim Kumar Saha &amp; Dr. Ritam Mallick, IISER-B</div>
+      <h3><a href="#" target="_blank">Exploring Neutron Stars in R2 Gravity</a></h3>
+      <p>Derived the modified gravitational field equations for the Starobinsky R2 model and extended the
+      Tolman–Oppenheimer–Volkoff equations to f(R) gravity. Numerically integrated the modified stellar structure
+      equations via a shooting method to map mass-radius configurations, and diagnosed the scalaron fine-tuning
+      problem inherent to f(R) stellar structure.</p>
+      <div class="pill-row">
+        <span class="pill">Mathematica</span>
+        <span class="pill">f(R) Gravity</span>
+        <span class="pill">Python</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="meta">Aug 2026 – Present · Self-Directed Study</div>
+      <h3><a href="#" target="_blank">X-Ray Binaries and Accretion Physics</a></h3>
+      <p>Surveying the observational landscape of X-ray binary systems through current review literature, and
+      studying accretion disk structure, angular momentum transport, and radiative processes from Frank, King &amp;
+      Raine's <em>Accretion Power in Astrophysics</em>.</p>
+      <div class="pill-row">
+        <span class="pill">Accretion Physics</span>
+        <span class="pill">Literature Review</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+<footer>
+  © <span id="year"></span> Varun Naudiyal.
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
