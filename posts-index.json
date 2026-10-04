@@ -1,16 +1,3 @@
 [
-  {
-    "slug": "welcome-post",
-    "title": "Welcome to My Blog",
-    "date": "2026-08-30",
-    "tags": ["meta"],
-    "summary": "A short intro post demonstrating markdown + LaTeX rendering."
-  },
-  {
-    "slug": "stellar-structure-equations",
-    "title": "Stellar Structure Equations of a Compact Star",
-    "date": "2026-08-30",
-    "tags": ["meta"],
-    "summary": "A short intro post looking at the basic derivation of the TOV equations."
-  }
+
 ]
